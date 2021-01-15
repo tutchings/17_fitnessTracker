@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { isValidObjectId } = require("mongoose");
 const Workout = require("../models/workout.js");
 
 router.get("/api/workouts", (req, res) => {
