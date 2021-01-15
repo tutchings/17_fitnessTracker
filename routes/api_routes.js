@@ -22,30 +22,38 @@ router.get("/api/workouts/range", (req, res) => {
         });
 });
 
-router.post("/api/workouts", ({ body }, res) => {
-    Workout.create(body)
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.status(400).json(err);
-        });
-});
+router.put("/api/workouts/:id", ({ body, params }, res) => {
+    const id = params.id;
+    console.log('id: ', id);
 
-router.put("/api/workouts/:id", ({ body }, res) => {
     let workout =  {
-        day: new Date().setDate(new Date().getDate()-10),
+        day: new Date().setDate(new Date().getDate()),
         exercises: [body]
     };
 
-    console.log(workout);
-    Workout.create(workout)
+    if(id !== "undefined"){
+        console.log('body', body);
+        Workout.update(
+            { _id: id },
+            { $push: {exercises: body}}
+        ).then(dbWorkout => {
+            res.json(dbWorkout);
+        })
+        .catch(err => {
+            res.status(400).json(err);
+        });
+    } else {
+        Workout.create(workout)
         .then(dbWorkout => {
             res.json(dbWorkout);
         })
         .catch(err => {
             res.status(400).json(err);
         });
+    }
+
+
+
 });
 
 module.exports = router;
