@@ -1,8 +1,8 @@
 # Unit 17 NoSQL Homework: Workout Tracker
 
 ## Link to Live Project and Project Image
-![Screenshot of Final Project 1](https://github.com/tutchings/13_burgerTracker/blob/master/public/assets/img/completedAppImg.PNG)
-![Screenshot of Final Project 2](https://github.com/tutchings/13_burgerTracker/blob/master/public/assets/img/completedAppImg.PNG)
+![Screenshot of Final Project 1](https://github.com/tutchings/17_fitnessTracker/blob/master/README_Imgs/fitnessTracker1.PNG)
+![Screenshot of Final Project 2](https://github.com/tutchings/17_fitnessTracker/blob/master/README_Imgs/fitnessTracker2.PNG)
 
 [Deployed Website Link](https://mysql-mvc-burger-shop.herokuapp.com/)
 
