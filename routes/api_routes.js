@@ -1,7 +1,9 @@
+// npm and file requirements
 const router = require("express").Router();
 const { isValidObjectId } = require("mongoose");
 const Workout = require("../models/workout.js");
 
+// get route with aggregate function to sum total exercise duration and add new total duration field to each exercise in database
 router.get("/api/workouts", (req, res) => {
     Workout.aggregate([
         {
@@ -11,8 +13,6 @@ router.get("/api/workouts", (req, res) => {
         }
     ])
     .then(dbWorkout => {
-        console.log(dbWorkout);
-
         res.json(dbWorkout);
     })
     .catch(err => {
@@ -20,6 +20,7 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
+// get route with aggregate function to sum total exercise duration and add new total duration field to each exercise in database
 router.get("/api/workouts/range", (req, res) => {
 
     Workout.aggregate([
@@ -30,8 +31,6 @@ router.get("/api/workouts/range", (req, res) => {
         }
     ])
     .then(dbWorkout => {
-        console.log(dbWorkout);
-
         res.json(dbWorkout);
     })
     .catch(err => {
@@ -39,14 +38,10 @@ router.get("/api/workouts/range", (req, res) => {
     });
 });
 
-router.post("/api/workouts", ({ body }, res) => {
+// post route to create new workout
+router.post("/api/workouts", (req, res) => {
 
-    let workout =  {
-        day: new Date().getDate(),
-        exercises: [body]
-    };
-
-    Workout.create(workout)
+    Workout.create({})
     .then(dbWorkout => {
         res.json(dbWorkout);
     })
@@ -56,35 +51,19 @@ router.post("/api/workouts", ({ body }, res) => {
 
 })
 
+// put route to add exercise to existing workout
 router.put("/api/workouts/:id", ({ body, params }, res) => {
-    const id = params.id;
-    console.log('id: ', id);
 
-    let workout =  {
-        day: new Date().getDate(),
-        exercises: [body]
-    };
-
-    if(id !== "undefined"){
-        console.log('body', body);
-        Workout.update(
-            { _id: id },
-            { $push: {exercises: body}}
-        ).then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.status(400).json(err);
-        });
-    } else {
-        Workout.create(workout)
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.status(400).json(err);
-        });
-    }
+    Workout.findByIdAndUpdate(
+        params.id,
+        { $push: {exercises: body}},
+        {new: true}
+    ).then(dbWorkout => {
+        res.json(dbWorkout);
+    })
+    .catch(err => {
+        res.status(400).json(err);
+    });
 
 });
 

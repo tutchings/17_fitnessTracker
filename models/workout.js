@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+// exercise schema that goes within an array in the workout schema
 const ExerciseSchema = new Schema({
     type: {
         type: String
@@ -35,6 +36,7 @@ const ExerciseSchema = new Schema({
     }
 });
 
+// workout schema for the database
 const WorkoutSchema = new Schema({
     day: {type: Date, default: Date.now},
     exercises: [ExerciseSchema]
