@@ -18,10 +18,15 @@ require("./routes/html_routes.js")(app);
 app.use(require("./routes/api_routes.js"));
 
 // initializing mongoose and database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { 
-    useNewUrlParser: true,
-    useFindAndModify: false 
-});
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/workout", 
+    { 
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false 
+    }
+);
 
 // starting server
 app.listen(PORT, () => {
