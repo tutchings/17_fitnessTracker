@@ -31,6 +31,8 @@ router.get("/api/workouts/range", (req, res) => {
         }
     ])
     .then(dbWorkout => {
+        dbWorkout = dbWorkout.slice(Math.max(dbWorkout.length - 7, 0));
+        console.log(dbWorkout);
         res.json(dbWorkout);
     })
     .catch(err => {
