@@ -1,5 +1,13 @@
 # Unit 17 NoSQL Homework: Workout Tracker
 
+## Link to Live Project and Project Image
+![Screenshot of Final Project 1](https://github.com/tutchings/13_burgerTracker/blob/master/public/assets/img/completedAppImg.PNG)
+![Screenshot of Final Project 2](https://github.com/tutchings/13_burgerTracker/blob/master/public/assets/img/completedAppImg.PNG)
+
+[Deployed Website Link](https://mysql-mvc-burger-shop.herokuapp.com/)
+
+## Assignment
+
 For this assignment, you'll create a workout tracker. You have already been provided with the front end code in the `Develop` folder. This assignment will require you to create Mongo database with a Mongoose schema and handle routes with Express.
 
 ## User Story
